@@ -50,25 +50,33 @@ export function renderReadiness(sheetBody, router) {
 export function renderAddExercise(sheetBody, ctx, router) {
   const { weekType, dayIndex } = ctx;
   let q = '';
-  redraw();
-  function redraw() {
+  // Build the input + list ONCE; search only re-renders the list, so the search box keeps focus.
+  const list = el('div', { class: 'list', style: { maxHeight: '60vh', overflowY: 'auto' } });
+  const search = el('input', {
+    type: 'search', placeholder: 'Search…', autocapitalize: 'off',
+    oninput: (e) => { q = (/** @type {HTMLInputElement} */ (e.target).value || '').toLowerCase(); renderList(); },
+    style: { width: '100%', marginBottom: '8px' },
+  });
+  sheetBody.replaceChildren(
+    el('div', { class: 'grabber' }),
+    el('h2', { style: { margin: '0 0 8px' } }, 'Add exercise'),
+    search,
+    list,
+  );
+  renderList();
+  function renderList() {
     const filt = EXERCISES.filter(e => !q || e.name.toLowerCase().includes(q) || e.primary.toLowerCase().includes(q));
-    sheetBody.replaceChildren(
-      el('div', { class: 'grabber' }),
-      el('h2', { style: { margin: '0 0 8px' } }, 'Add exercise'),
-      el('input', { type: 'search', placeholder: 'Search…', oninput: (e) => { q = e.target.value.toLowerCase(); redraw(); }, style: { width: '100%', marginBottom: '8px' } }),
-      el('div', { class: 'list', style: { maxHeight: '60vh', overflowY: 'auto' } }, filt.map(e => el('div', { class: 'list-item' }, [
-        el('div', {}, [el('div', { style: { fontWeight: 600 } }, e.name), el('div', { class: 'faint' }, `${e.primary}${e.secondary.length ? ' · ' + e.secondary.join(', ') : ''}`)]),
-        el('button', { class: 'btn sm primary', onclick: () => {
-          S.update(s => {
-            const day = s.programs[weekType].days[Number(dayIndex)];
-            day.slots.push({ exerciseId: e.id, sets: 3, repLow: 10, repHigh: 12, restSec: 90 });
-          });
-          toast('Added');
-          router.closeSheet();
-          router.refresh();
-        } }, 'Add'),
-      ]))),
-    );
+    list.replaceChildren(...filt.map(e => el('div', { class: 'list-item' }, [
+      el('div', {}, [el('div', { style: { fontWeight: 600 } }, e.name), el('div', { class: 'faint' }, `${e.primary}${e.secondary.length ? ' · ' + e.secondary.join(', ') : ''}`)]),
+      el('button', { class: 'btn sm primary', onclick: () => {
+        S.update(s => {
+          const day = s.programs[weekType].days[Number(dayIndex)];
+          day.slots.push({ exerciseId: e.id, sets: 3, repLow: 10, repHigh: 12, restSec: 90 });
+        });
+        toast('Added');
+        router.closeSheet();
+        router.refresh();
+      } }, 'Add'),
+    ])));
   }
 }

@@ -94,12 +94,12 @@ export function render(view, router) {
       ]),
       el('div', { class: 'field' }, [
         el('label', {}, 'API Key'),
-        el('input', { type: 'password', placeholder: keyPlaceholder(s.settings.aiProvider), value: s.settings.apiKey || '', oninput: (e) => set('apiKey', e.target.value) }),
+        el('input', { type: 'password', placeholder: keyPlaceholder(s.settings.aiProvider), value: s.settings.apiKey || '', autocomplete: 'off', autocapitalize: 'off', spellcheck: false, oninput: (e) => S.setSetting('apiKey', /** @type {HTMLInputElement} */ (e.target).value) }),
         el('p', { class: 'faint' }, 'Stored locally on your phone. Used only when you send a message or ask for a suggestion.'),
       ]),
       el('div', { class: 'field' }, [
         el('label', {}, 'Model'),
-        el('input', { type: 'text', placeholder: modelPlaceholder(s.settings.aiProvider), value: s.settings.aiModel || '', oninput: (e) => set('aiModel', e.target.value) }),
+        el('input', { type: 'text', placeholder: modelPlaceholder(s.settings.aiProvider), value: s.settings.aiModel || '', autocapitalize: 'off', spellcheck: false, oninput: (e) => S.setSetting('aiModel', /** @type {HTMLInputElement} */ (e.target).value) }),
         el('p', { class: 'faint' }, modelHint(s.settings.aiProvider)),
       ]),
       el('div', { class: 'field' }, [
@@ -125,7 +125,7 @@ export function render(view, router) {
       ]),
       el('div', { class: 'field' }, [
         el('label', {}, 'Deload every N weeks (4–8)'),
-        el('input', { type: 'number', min: '4', max: '8', value: String(s.settings.deloadEvery || 6), oninput: (e) => set('deloadEvery', Math.max(4, Math.min(8, parseInt(e.target.value, 10) || 6))) }),
+        el('input', { type: 'number', min: '4', max: '8', value: String(s.settings.deloadEvery || 6), oninput: (e) => S.setSetting('deloadEvery', Math.max(4, Math.min(8, parseInt(/** @type {HTMLInputElement} */ (e.target).value, 10) || 6))) }),
       ]),
     ]),
 

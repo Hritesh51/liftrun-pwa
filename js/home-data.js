@@ -43,7 +43,7 @@ export const HOME_EXERCISES = [
     cues: ['Lie on floor, DBs over chest.', 'Elbows touch floor, pause.', 'Press up, squeeze.'] },
   { id: 'h-db-bench-press',  name: 'DB Bench Press',        pattern: 'h-push', primary: 'chest', secondary: ['triceps','shoulders'], equipment: ['dumbbells','bench'], level: 5, loadType: 'load', imageUrl: img('Dumbbell_Bench_Press'),
     cues: ['Bench flat/incline.', 'Full stretch, press together.', 'Control the negative.'] },
-  { id: 'h-band-press',      name: 'Band Chest Press',      pattern: 'h-push', primary: 'chest', secondary: ['triceps','shoulders'], equipment: ['bands'], level: 3, loadType: 'reps', imageUrl: img('Pushups'),
+  { id: 'h-band-press',      name: 'Band Chest Press',      pattern: 'h-push', primary: 'chest', secondary: ['triceps','shoulders'], equipment: ['bands'], level: 3, loadType: 'reps', imageUrl: img('Cable_Chest_Press'),
     cues: ['Band behind back, press forward.', 'Meet hands in front.', 'Slow return for tension.'] },
 
   // ===== HORIZONTAL PULL (back) =====
@@ -67,7 +67,7 @@ export const HOME_EXERCISES = [
     cues: ['Anchor band overhead.', 'Pull elbows down to ribs.', 'Feel the lats.'] },
   { id: 'v-neg-pullup',      name: 'Negative Pull-up',      pattern: 'v-pull', primary: 'lats', secondary: ['biceps'], equipment: ['pullup-bar'], level: 4, loadType: 'reps', imageUrl: img('Pullups'),
     cues: ['Jump to the top position.', 'Lower as slowly as possible (5s+).', 'Builds the strength for full reps.'] },
-  { id: 'v-band-pullup',     name: 'Band-Assisted Pull-up', pattern: 'v-pull', primary: 'lats', secondary: ['biceps'], equipment: ['pullup-bar','bands'], level: 5, loadType: 'reps', imageUrl: img('Pullups'),
+  { id: 'v-band-pullup',     name: 'Band-Assisted Pull-up', pattern: 'v-pull', primary: 'lats', secondary: ['biceps'], equipment: ['pullup-bar','bands'], level: 5, loadType: 'reps', imageUrl: img('Band_Assisted_Pull-Up'),
     cues: ['Loop band on bar, foot in band.', 'Pull chin over bar.', 'Less band as you get stronger.'] },
   { id: 'v-pullup',          name: 'Pull-up',               pattern: 'v-pull', primary: 'lats', secondary: ['biceps'], equipment: ['pullup-bar'], level: 6, loadType: 'bodyweight+', imageUrl: img('Pullups'),
     cues: ['Full dead hang.', 'Chin over bar, chest up.', 'Control the descent.'] },
@@ -97,9 +97,9 @@ export const HOME_EXERCISES = [
     cues: ['Feet shoulder-width.', 'Sit between heels, chest up.', 'Below parallel if mobile.'] },
   { id: 'q-tempo-squat',     name: 'Tempo Squat (3s down)', pattern: 'squat', primary: 'quads', secondary: ['glutes'], equipment: ['bodyweight'], level: 3, loadType: 'reps', imageUrl: img('Bodyweight_Squat'),
     cues: ['3-second descent, 1s pause.', 'Stand with control.', 'Time under tension builds size.'] },
-  { id: 'q-split-squat',     name: 'Split Squat',           pattern: 'squat', primary: 'quads', secondary: ['glutes'], equipment: ['bodyweight'], level: 4, loadType: 'reps', imageUrl: img('Dumbbell_Lunges'),
+  { id: 'q-split-squat',     name: 'Split Squat',           pattern: 'squat', primary: 'quads', secondary: ['glutes'], equipment: ['bodyweight'], level: 4, loadType: 'reps', imageUrl: img('Dumbbell_Rear_Lunge'),
     cues: ['Staggered stance, drop straight down.', 'Front knee over mid-foot.', 'Both legs equal.'] },
-  { id: 'q-bulgarian',       name: 'Bulgarian Split Squat',  pattern: 'squat', primary: 'quads', secondary: ['glutes'], equipment: ['chair'], level: 5, loadType: 'bodyweight+', imageUrl: img('Dumbbell_Lunges'),
+  { id: 'q-bulgarian',       name: 'Bulgarian Split Squat',  pattern: 'squat', primary: 'quads', secondary: ['glutes'], equipment: ['chair'], level: 5, loadType: 'bodyweight+', imageUrl: img('Dumbbell_Rear_Lunge'),
     cues: ['Rear foot on chair.', 'Drop the back knee, stay tall.', 'Brutal — the home squat king.'] },
   { id: 'q-pistol-prog',     name: 'Pistol Squat (assisted)', pattern: 'squat', primary: 'quads', secondary: ['glutes'], equipment: ['chair'], level: 6, loadType: 'reps', imageUrl: img('Bodyweight_Squat'),
     cues: ['Hold support, squat on one leg.', 'Other leg extended forward.', 'Build to unassisted.'] },
@@ -131,7 +131,7 @@ export const HOME_EXERCISES = [
   // ===== ARMS =====
   { id: 'a-bench-dip',       name: 'Bench Dip',             pattern: 'triceps', primary: 'triceps', secondary: ['chest','shoulders'], equipment: ['chair'], level: 2, loadType: 'reps', imageUrl: img('Bench_Dips'),
     cues: ['Hands on chair behind you.', 'Lower until elbows ~90°.', 'Press up, squeeze triceps.'] },
-  { id: 'a-dip',             name: 'Parallel Bar Dip',      pattern: 'triceps', primary: 'triceps', secondary: ['chest','shoulders'], equipment: ['dip-station'], level: 5, loadType: 'bodyweight+', imageUrl: img('Dips_-_Triceps_Version'),
+  { id: 'a-dip',             name: 'Parallel Bar Dip',      pattern: 'triceps', primary: 'triceps', secondary: ['chest','shoulders'], equipment: ['dip-station'], level: 5, loadType: 'bodyweight+', imageUrl: img('Parallel_Bar_Dip'),
     cues: ['Slight forward lean.', 'Lower to ~90°.', 'Lockout at top.'] },
   { id: 'a-band-pushdown',   name: 'Band Triceps Pushdown', pattern: 'triceps', primary: 'triceps', secondary: [], equipment: ['bands'], level: 2, loadType: 'reps', imageUrl: img('Triceps_Pushdown'),
     cues: ['Anchor band high.', 'Elbows pinned, extend down.', 'Squeeze at bottom.'] },
@@ -145,7 +145,7 @@ export const HOME_EXERCISES = [
   // ===== CORE =====
   { id: 'co-plank',          name: 'Plank',                 pattern: 'core', primary: 'core', secondary: [], equipment: ['bodyweight'], level: 1, loadType: 'time', imageUrl: img('Plank'),
     cues: ['Elbows under shoulders.', 'Glutes + abs tight, straight line.', 'Breathe.'] },
-  { id: 'co-hollow',         name: 'Hollow Body Hold',      pattern: 'core', primary: 'core', secondary: [], equipment: ['bodyweight'], level: 3, loadType: 'time', imageUrl: img('Plank'),
+  { id: 'co-hollow',         name: 'Hollow Body Hold',      pattern: 'core', primary: 'core', secondary: [], equipment: ['bodyweight'], level: 3, loadType: 'time', imageUrl: img('Jackknife_Sit-Up'),
     cues: ['Lower back pressed to floor.', 'Legs + arms extended, off floor.', 'Hold the dish shape.'] },
   { id: 'co-hang-knee',      name: 'Hanging Knee Raise',    pattern: 'core', primary: 'core', secondary: [], equipment: ['pullup-bar'], level: 4, loadType: 'reps', imageUrl: img('Hanging_Leg_Raise'),
     cues: ['Hang, tilt pelvis up.', 'Knees to chest, slow down.', 'No swinging.'] },

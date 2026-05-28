@@ -29,7 +29,7 @@ export function renderPlateCalcSheet(sheetBody, ctx, router) {
       ]),
       el('div', { class: 'field' }, [
         el('label', {}, `Bar weight (${units})`),
-        el('input', { type: 'number', step: '0.5', value: String(bar), oninput: e => { bar = parseFloat(e.target.value) || defaultBar; redraw(); } }),
+        el('input', { type: 'number', step: '0.5', value: String(bar), oninput: e => bar = parseFloat(e.target.value) || defaultBar, onchange: redraw }),
       ]),
 
       renderBarVisual(br, units),

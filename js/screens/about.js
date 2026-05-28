@@ -2,7 +2,7 @@
 // anything shipped commercially should be reviewed by a qualified professional / lawyer.
 import { el } from '../util.js';
 
-const APP_VERSION = 'v32';
+const APP_VERSION = 'v34';
 
 function section(title, paras) {
   return el('div', { style: { marginTop: '18px' } }, [

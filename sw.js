@@ -1,5 +1,5 @@
 // Service worker — cache-first app shell + network passthrough for API calls.
-const CACHE = 'liftrun-v32';
+const CACHE = 'liftrun-v34';
 const SHELL = [
   './',
   './index.html',
