@@ -7,8 +7,12 @@ import { HOME_INDEX } from './home-data.js';
 // (profiles.js) repoints this to a per-profile namespace ("liftrun.v1::<id>") before load().
 export const LEGACY_KEY = 'liftrun.v1';
 let KEY = LEGACY_KEY;
-/** Point state persistence at a specific profile's namespace. Call before load(). */
-export function setStorageKey(k) { KEY = k || LEGACY_KEY; }
+/**
+ * Point state persistence at a specific profile's namespace. Call before load().
+ * Flushes any pending debounced save to the CURRENT key first, so switching profiles can never
+ * misdirect a write (e.g. lose a just-created profile's state into another profile's bucket).
+ */
+export function setStorageKey(k) { flushSave(); KEY = k || LEGACY_KEY; }
 export function getStorageKey() { return KEY; }
 
 const DEFAULTS = {
@@ -187,16 +191,21 @@ export function load() {
   return state;
 }
 
-let saveTimer;
+let saveTimer = null;
+let savePending = false;
+function writeNow() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); }
+  catch (e) { console.error('Save failed', e); }
+}
+/** Force any pending debounced save to disk immediately (to the current key + state). */
+function flushSave() {
+  if (saveTimer) { clearTimeout(saveTimer); saveTimer = null; }
+  if (savePending) { savePending = false; writeNow(); }
+}
 export function save() {
+  savePending = true;
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => {
-    try {
-      localStorage.setItem(KEY, JSON.stringify(state));
-    } catch (e) {
-      console.error('Save failed', e);
-    }
-  }, 50);
+  saveTimer = setTimeout(() => { saveTimer = null; savePending = false; writeNow(); }, 50);
 }
 
 export function get() { return state; }

@@ -306,26 +306,27 @@ h3 { font-size: 1rem; font-weight: 650; letter-spacing: -.01em; margin: 0 0 6px;
 .exercise-block .ex-header h3 { flex: 1; }
 .set-row {
   display: grid;
-  grid-template-columns: 28px 1fr 1fr 60px auto;
-  gap: 8px; align-items: center;
+  /* minmax(0,1fr) lets the steppers shrink instead of clipping the number on narrow phones. */
+  grid-template-columns: 18px minmax(0,1fr) minmax(0,1fr) 40px auto;
+  gap: 5px; align-items: center;
   padding: 8px 0; border-top: 1px solid var(--line);
 }
 .set-row.head { color: var(--text-faint); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; border-top: 0; padding-top: 0; }
 .set-row .idx { color: var(--text-faint); font-weight: 700; font-variant-numeric: tabular-nums; }
 .set-row.done .idx { color: var(--good); }
 .set-row .stepper {
-  display: grid; grid-template-columns: 36px 1fr 36px;
+  display: grid; grid-template-columns: 27px minmax(0,1fr) 27px;
   align-items: center;
   background: var(--bg-3); border: 1px solid var(--line); border-radius: 10px;
   overflow: hidden;
 }
 .set-row .stepper input {
-  background: transparent; border: 0; text-align: center;
-  font-size: 17px; font-weight: 600; padding: 10px 0;
+  background: transparent; border: 0; text-align: center; min-width: 0;
+  font-size: 14px; font-weight: 600; padding: 9px 0;
   font-variant-numeric: tabular-nums;
 }
 .set-row .stepper button {
-  height: 40px; color: var(--text-dim); font-size: 20px; font-weight: 700;
+  height: 38px; padding: 0; color: var(--text-dim); font-size: 18px; font-weight: 700;
 }
 .set-row .stepper button:active { background: var(--line); }
 .set-row .rpe-chip {
@@ -334,7 +335,7 @@ h3 { font-size: 1rem; font-weight: 650; letter-spacing: -.01em; margin: 0 0 6px;
   font-size: 13px; font-weight: 600;
 }
 .set-row .log-btn {
-  height: 42px; min-width: 56px; padding: 0 10px;
+  height: 42px; min-width: 44px; padding: 0 7px;
   border-radius: 11px; background: var(--accent-grad); color: var(--on-accent);
   font-weight: 700; font-size: 14px;
   box-shadow: 0 2px 8px rgba(255,100,56,.28);

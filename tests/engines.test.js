@@ -164,6 +164,10 @@ test('profiles: migration, isolation, gate, PIN', async () => {
   assert.equal(S.get().user._marker, 'OLD', 'profile A data isolated + intact');
   assert.equal(S.get().settings.theme, 'light', 'profile A theme isolated');
   assert.notEqual(P.stateKeyFor(meId), P.stateKeyFor(bId), 'distinct storage namespaces');
+  // Regression: B's state must be flushed to disk even though we switched away right after
+  // creating it (a debounced save must not be lost/misdirected on profile switch).
+  const bSaved = JSON.parse(localStorage.getItem(P.stateKeyFor(bId)) || 'null');
+  assert.ok(bSaved && bSaved.settings.theme === 'pink', 'profile B state persisted on switch (no lost write)');
 
   // ---- PIN ----
   await P.setPin(bId, '1234');

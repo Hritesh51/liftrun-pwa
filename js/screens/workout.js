@@ -302,8 +302,8 @@ function renderSetRow(idx, doneSets, sug, slot, ex, session, units, onChange) {
   });
   row.querySelector('.idx')?.addEventListener('pointerup', () => clearTimeout(lpTimer));
 
-  function bumpW(d) { wInput.value = (parseFloat(wInput.value || '0') + d).toString(); haptic('light'); }
-  function bumpR(d) { rInput.value = Math.max(0, (parseInt(rInput.value || '0', 10) + d)).toString(); haptic('light'); }
+  function bumpW(d) { wInput.value = String(Math.max(0, Math.round((parseFloat(wInput.value || '0') + d) * 2) / 2)); haptic('light'); }
+  function bumpR(d) { rInput.value = String(Math.max(0, (parseInt(rInput.value || '0', 10) + d))); haptic('light'); }
   function commit() {
     const wVal = parseFloat(wInput.value);
     const rVal = parseInt(rInput.value, 10);
