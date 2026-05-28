@@ -1,0 +1,11 @@
+{
+  "name": "liftrun-pwa",
+  "version": "1.0.0",
+  "description": "Personal strength + running + home bodybuilding PWA",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "serve": "python -m http.server 8765"
+  }
+}
